@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <script src="https://cdn.jsdelivr.net/gh/Ai-Elaina/live2d-widget@latest/autoload.js"></script>
 
+
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"ai-elaina.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.3.0","exturl":false,"sidebar":{"position":"left","width":280,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
@@ -550,27 +551,22 @@ NexT.utils.loadComments('.gitalk-container', () => {
 
 <!--Aplayer 音乐播放功能-->
 
-	<!-- require APlayer -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<div id="aplayer"></div>
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<!-- require MetingJS -->
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-<meting-js
-        id="2824465208"<!--//网易的上https://music.163.com/登陆自己的号找一个喜欢的歌单，复制地址栏上面的ID就可以啦！！！-->
-        lrc-type="0"
-        server="netease"<!--//qq音乐或者其他上面有账号的小伙伴可以参考https://github.com/metowolf/MetingJS哦！！！-->
-        order="list" <!--//这里是歌单加载的排列顺序，list:按照原歌单排列；random：打乱顺序排列-->
-        type="playlist"
-        fixed="true"
-        list-olded="true">
-</meting-js>
-  <!--
-  <link rel="stylesheet" href="/lib/Aplayer/Aplayer/APlayer.min.css">
+  <style>
+    #aplayer {
+        width: 50%;
+        margin: 0 auto;
+    }
+    @media screen and (max-device-width: 400px) {
+        #aplayer {
+            width: 100%;
+        }
+    }
+</style>
+  <link rel="stylesheet" href="/lib/aplayer/APlayer.min.css">
   <div id="aplayer"></div>
-  <script type="text/javascript" src="/lib/Aplayer/APlayer.min.js"></script>
-  <script type="text/javascript" src="/lib/Aplayer/music.js"></script>
-  -->
+  <script type="text/javascript" src="/lib/aplayer/APlayer.min.js"></script>
+  <script type="text/javascript" src="/lib/aplayer/APlayer/music.js"></script>
+ 
 
 
 </body>
