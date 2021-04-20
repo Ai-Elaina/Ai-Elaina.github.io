@@ -204,18 +204,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -283,6 +283,127 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ai-elaina.github.io/2021/04/20/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/dataImage/avatar.jpg">
+      <meta itemprop="name" content="Elaina·Celesteria">
+      <meta itemprop="description" content="一个热爱二次元和开发的死肥宅">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="伊蕾娜天下第一">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/20/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">KMP算法详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-20 18:23:18 / 修改时间：21:50:10" itemprop="dateCreated datePublished" datetime="2021-04-20T18:23:18+08:00">2021-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/KMP%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">KMP算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-什么是KMP算法"><a href="#1-什么是KMP算法" class="headerlink" title="1    什么是KMP算法"></a>1    什么是KMP算法</h3><p>​        KMP是一种字符串查找算法，由Knuth，Morris和Pratt发明的。</p>
+<h3 id="2-KMP的作用"><a href="#2-KMP的作用" class="headerlink" title="2    KMP的作用"></a>2    KMP的作用</h3><p>​        KMP主要应用在字符串匹配上，主要思想是当出现字符串不匹配时，可以知道一部分之前已经匹配的文本内容，可以利用这些信息必从头头再去匹配。</p>
+<h3 id="3-了解KMP中的中各个指针，数组的意义"><a href="#3-了解KMP中的中各个指针，数组的意义" class="headerlink" title="3    了解KMP中的中各个指针，数组的意义"></a>3    了解KMP中的中各个指针，数组的意义</h3><p>​        写过KMP，一定要了解什么是<strong>前缀</strong>，<strong>后缀</strong>，<strong>最长相等前后缀</strong>，**<code>next</code>数组<strong>，以及KMP中指针</strong><code>i</code><strong>，与</strong><code>j</code>**代表的意思，这样才可以更好地学习KMP</p>
+<p>​        <strong>文本串：</strong>你输入的字符串。</p>
+<p>​        <strong>模式串：</strong>要从文本串中匹配的字符串。</p>
+<p>​        <strong>前缀：</strong>当前所指向的字符的前面所有子字符串，不包括当前所指向的字符。</p>
+<p>​        <strong>后缀：</strong>不含有首字符，但含有当前所指向的字符，所有子串。:chestnut:<strong>:</strong></p>
+<html>
+
+<table style="margin: auto">
+    <tr>
+        <td>
+            字符串：aabaaf<br>
+            子串：a 没有前缀<br>
+            子串：aa 的前缀有`a`<br>
+            子串：aab 的前缀有`a、aa`<br>
+            子串：aaba 的前缀有`a、aa、aab`<br>
+            子串：aabaa 的前缀有`a、aa、aab、aaba`<br>
+            子串：aabaaf 的前缀有`a、aa、aab、aaba、aabaa`<br>    
+        </td>
+        <td>
+            字符串：aabaaf<br>
+            子串：a 没有后缀<br>
+            子串：aa 的后缀有`a`<br>
+            子串：aab 的后缀有`b、ab`<br>
+            子串：aaba 的后缀有`a、ba、aba`<br>
+            子串：aabaa 的后缀有`a、aa、baa、abaa`<br>
+            子串：aabaaf 的后缀有`f、af、aaf、baaf、abaaf`<br>
+        </td>
+    </tr>
+</table>
+
+</html>
+
+<p>​        <strong>最长相等前后缀：</strong>前缀与后缀相等时最长的子串。</p>
+<p>​        <strong><code>next</code>数组：</strong><code>next</code>数组就是一个前缀表（prefix table）。<code>next[j]</code>表示用来存放，字符串的索引从<code>0</code>到<code>j</code>的子串中<strong>最长相等前后缀</strong>的长度。用上面的字符串：<code>aabaaf</code>那么<code>next[6] = &#123;0, 1, 0, 1, 2, 0&#125;</code></p>
+<p>​        那么前缀表有什么作用呢？<br>​        <strong>前缀表是用来回退的，它记录了模式串与文本串不匹配的时候，模式串应该从哪里开始重新匹配</strong>    举个:chestnut:</p>
+<p>​                文本串：<code>aabaabaafa</code>    模式串：<code>aabaaf</code></p>
+<p>​                两个指针同时进行匹配直到遇到冲突：<br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205208.png" style="zoom:60%;"><br>​                箭头所指遇到了冲突，方框都是已匹配的。遇到冲突后指针会回退到<code>b</code><br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205700.png" style="zoom:60%;"><br>继续进行匹配<br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420210123.png" style="zoom:60%;"><br>这时匹配完成了。</p>
+<p><strong>那么他为什么会回退到<code>b</code>呢？</strong>这时就用到了<code>next</code>数组了。<br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420212811.png" style="zoom:60%;"><br><code>next</code><strong>数组不仅记录的是最长前后缀他还记录了遇到冲突后要返回的位置，遇到冲突后next[j-1]的值即为要返回的位置，这是因为next[j-1]的值就是最长前缀的下一个的索引。（j回到b，b之前是与i之前匹配的）</strong>    当j指向f时不匹配，<code>next[j-1] = 2, s[2] = b</code></p>
+<h3 id="4-代码构造next数组"><a href="#4-代码构造next数组" class="headerlink" title="4    代码构造next数组"></a>4    代码构造next数组</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getNext(String s) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.size();</span><br><span class="line">    <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">0</span>;  <span class="comment">//首字符最长前后缀为0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>, i = <span class="number">1</span>; i &lt; n; i++) &#123; <span class="comment">//j指向前缀尾，也是当前前缀的长度，i指向后缀尾</span></span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; s.charAt(j) != s.charAt(i)) &#123;<span class="comment">//当j指向0时就可以跳出循环，</span></span><br><span class="line">            <span class="comment">//当前缀尾和后缀尾不匹配时，回退到最长前缀的下一个的索引</span></span><br><span class="line">            j = next[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(j) == s.charAt(i))</span><br><span class="line">            <span class="comment">//匹配时前缀尾指针向后移。</span></span><br><span class="line">            j++;</span><br><span class="line">        <span class="comment">//next[i]的值记为j(前缀的长度)，</span></span><br><span class="line">        next[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-练习"><a href="#5-练习" class="headerlink" title="5    练习"></a>5    练习</h3><p>​            <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-strstr/">实现strStr()</a></p>
+<p>​        </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://ai-elaina.github.io/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -296,7 +417,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">java中的比较</a>
+          <a href="/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">java基础-Comparable和Comparator</a>
         </h2>
 
         <div class="post-meta-container">
@@ -306,10 +427,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-04-19 17:04:14 / 修改时间：17:16:41" itemprop="dateCreated datePublished" datetime="2021-04-19T17:04:14+08:00">2021-04-19</time>
+      <time title="创建时间：2021-04-19 17:04:14" itemprop="dateCreated datePublished" datetime="2021-04-19T17:04:14+08:00">2021-04-19</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-20 23:25:22" itemprop="dateModified" datetime="2021-04-20T23:25:22+08:00">2021-04-20</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -334,7 +461,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h2 id="1-Comparable"><a href="#1-Comparable" class="headerlink" title="1    Comparable"></a>1    Comparable</h2><p>​        该接口对实现它的每个类的对象强加一个整体排序。 这个排序被称为类的自然排序 ，接口只有一个的<code>compareTo</code>方法，此方法被称为其自然比较方法 。</p>
+<p>​        <code>Collections.sort</code>(和<code>Array.sort</code>)可以为自动实现此接口的对象进行列表（和数组）排序。实现此接口的对象，可以用做<code>sorted map</code>的键或<code>sorted set</code>的元素，而不需要指定一个<code>comparator</code>。</p>
+<p>​        假如a和b都是实现了<code>Comparable</code>接口的类C的实例，那么只有当<code>a.compareTo(b)</code>的结果与<code>a.equals(b)</code>的结果一致时，才称类C的自然顺序与<code>equals</code>一致。强烈建议将类的自然顺序和equals的结果保持一致，因为如果不一致的话，由该类对象为键的sorted map和由该类对象为元素的sorted set的行为将会变得很怪异。</p>
+<p>​        例如一个实现了Comparable接口的元素的有序集合<code>sorted set</code>，如果，对象a，b有<code>a.equals(b)</code>为<code>false</code>，但<code>a.comparaTo(b) == 0</code>为<code>true</code>则在添加第二个元素的操作会失败，因为在<code>sorted set</code>看来，二者在排序上是一致的，<code>sorted set</code>不会保存重复的元素。</p>
+<p>​        <code>java</code>中的类基本上都是自然顺序与<code>equals</code>一致的，一个例外是<code>BigDecimal</code>，因为<code>BigDecimal</code>中的自然顺序<code>comparaTo</code>和相同值但<strong>精度不同</strong>的对象的<code>equals</code>一致的如（4与4.0）。</p>
+<p><strong>代码如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal a = <span class="keyword">new</span> BigDecimal(<span class="number">4</span>);</span><br><span class="line">BigDecimal b = <span class="keyword">new</span> BigDecimal(<span class="number">4.0</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;comparable: &quot;</span> + (a.compareTo(b) == <span class="number">0</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;equals: &quot;</span> + a.equals(b));</span><br></pre></td></tr></table></figure>
+
+<p>这是运行结果<img data-src="/../../../images/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202021-04-19%20215611.png"></p>
+<h2 id="2-我们自己的类"><a href="#2-我们自己的类" class="headerlink" title="2    我们自己的类"></a>2    我们自己的类</h2><p>​        在创建自己的数据类型时，如果要想将其进行排序，实现<code>Comparable</code>接口即可。实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Dog</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Dog o)</span> </span>&#123; <span class="comment">//比较规则按年龄。</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.age &lt; o.age) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.age &gt; o.age) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog tom = <span class="keyword">new</span> Dog(<span class="string">&quot;Tom&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        Dog tom1 = <span class="keyword">new</span> Dog(<span class="string">&quot;Tom&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        Dog bone = <span class="keyword">new</span> Dog(<span class="string">&quot;bone&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="comment">// 将tom与bone进行比较按年龄,如果你想用别的策略,可以重新定义比较规则。</span></span><br><span class="line">        <span class="comment">//tom的年龄是否大于bone。</span></span><br><span class="line">        System.out.println(tom.compareTo(bone) == <span class="number">1</span>);  <span class="comment">// 结果：true</span></span><br><span class="line">        System.out.println(tom.equals(tom1)); <span class="comment">// 结果：false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        <code>compareTo</code>方法用于比较当前元素<code>a</code>与指定元素<code>b</code>，结果为<code>int</code>值，如果<code>a &gt; b</code>，<code>int &gt; 0</code>；如果<code>a = b</code>，<code>int = 0</code>；如果<code>a &lt; b</code>，<code>int &lt; 0</code>。</p>
+<p>​        然而我们的类虽然可以比较了，但自然排序（<code>comparaTo</code>）与<code>equals</code>并不一致。<code>comparaTo</code>与<code>equals</code>不一致的危害我们在上面也提到过了。所以，我们应该<strong>重写<code>equals</code>方法</strong>。在上面的类中加入以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Dog o)</span> </span>&#123; <span class="comment">//比较规则按年龄。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.age &lt; o.age) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.age &gt; o.age) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    Dog dog = (Dog) o;</span><br><span class="line">    <span class="keyword">return</span> age == dog.age &amp;&amp; name.equals(dog.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        但是重写<code>equals</code>方法必然要重写<code>hashCode</code>方法。<br>​        <strong><code>hashCode</code>必须要与<code>equals</code>一致。<code>equals</code>却不一定与<code>hashCode</code>一致</strong>。见<a href>hashCode详解</a>。<br>​                <strong>1.如果两个对象的<code>equals</code>相等，那么这两个对象的<code>hashCode</code>也一定相等。</strong><br>​                <strong>2.如果两个对象的<code>hashCode</code>相等，那这两个对象的<code>equals</code>不一定相等。</strong></p>
+<h2 id="2-Comparator"><a href="#2-Comparator" class="headerlink" title="2    Comparator"></a>2    Comparator</h2><p>​        比较器，当你的类没有实现Comparable接口是，可以写一个比较器来使你的类实现排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Dog&gt; list = <span class="keyword">new</span> ArrayList&lt;Dog&gt;();</span><br><span class="line">list.add(tom);</span><br><span class="line">list.add(bone);</span><br><span class="line">list.sort(<span class="keyword">new</span> Comparator&lt;Dog&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(o1.age &gt; o2.age)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">if</span> (o1.age &lt; o2.age)</span><br><span class="line">             <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">         <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">System.out.println(list);</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以将list排序了。当然当你写比较器时，一般也要保证<code>compare</code>的结果与<code>equals</code>结果一致。</p>
+<h2 id="4-二者比较"><a href="#4-二者比较" class="headerlink" title="4    二者比较"></a>4    二者比较</h2><p>​        Comparable可以看做是内部比较器，Comparator可以看做是外部比较器。</p>
+<p>​        一个类可以通过实现Comparable接口来自带有序性，也可以通过额外指定Comparator来附加有序性。</p>
+<p>​        二者作用其实是一致的。</p>
+
       
     </div>
 
@@ -385,7 +536,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-04-19 15:54:09 / 修改时间：17:16:38" itemprop="dateCreated datePublished" datetime="2021-04-19T15:54:09+08:00">2021-04-19</time>
+      <time title="创建时间：2021-04-19 15:54:09 / 修改时间：17:24:32" itemprop="dateCreated datePublished" datetime="2021-04-19T15:54:09+08:00">2021-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -415,7 +566,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">  	<span class="comment">// 排序算法。。</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="comment">// 比较函数</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v, Comparable w)</span> </span>&#123;</span><br><span class="line">      	<span class="keyword">return</span> v.comparaTo(w) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="comment">// 单行打印函数</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; ++i) &#123;</span><br><span class="line">          System.out.print(a[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      	System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="comment">// 判断是否有序函数</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSorted</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.length; ++i) &#123;</span><br><span class="line">          	<span class="keyword">if</span> (less(a[i], a[i - <span class="number">1</span>]))</span><br><span class="line">              	<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="0-2-数据类型"><a href="#0-2-数据类型" class="headerlink" title="0.2    数据类型"></a>0.2    数据类型</h3><p>​        我们的排序模板适用任何实现了<code>Comparable接口</code>的数据类型。</p>
-<p>​        当我们创建自己的数据类型时，只要实现<code>Comparable接口</code>就可以保证用例代码可以将其排序。见<a href>java中的比较</a></p>
+<p>​        当我们创建自己的数据类型时，只要实现<code>Comparable接口</code>就可以保证用例代码可以将其排序。见<a target="_blank" rel="noopener" href="http://elaina.vip/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/">java中的比较</a></p>
 <h2 id="一-选择排序"><a href="#一-选择排序" class="headerlink" title="一    选择排序"></a>一    选择排序</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1    概念"></a>1.1    概念</h3><p>​        首先找到数组中最小的元素，其次，将它和数组的第一个元素交换位置（如果第一个元素就是最小的元素）。再次，在剩下的元素中找到最小的元素，将它与数组中第二个的元素交换位置。如此往复，直到将整个数组排序。<br>​        这种方法叫做<strong>选择排序</strong>，因为它在不断地选择<strong>剩余元素中最小</strong>的。</p>
 <p>​        选择排序的内循环只是在寻找剩余元素中<strong>最小的元素</strong>，而交换的代码则写在，内循环外边，每次交换都能排定一个元素。<code>N</code>个元素，因此交换的总次数为<code>N</code>。所以算法的<strong>时间效率</strong>取决于<strong>比较的次数</strong>。</p>
 <h3 id="1-2-结论"><a href="#1-2-结论" class="headerlink" title="1.2    结论"></a>1.2    结论</h3><p>​        命题A：<strong>对于长度为<code>N</code>的数组，选择排序需要大约<code>N^2/2</code>次比较和<code>N</code>交换</strong></p>

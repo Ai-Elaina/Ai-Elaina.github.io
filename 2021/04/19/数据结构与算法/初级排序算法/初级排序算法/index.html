@@ -35,7 +35,7 @@
 <meta property="og:description" content="零    游戏规则0.1    排序算法模板​        在学习排序算法中我们将会使用一个”排序算法类模板——Example类“，该类包含辅助函数less()比较 、exch()交换、show()单行打印、isSorted()是否有序。 123456789101112131415161718192021222324public class Example &amp;#123;  	&#x2F;&#x2F; 排序算法。。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-19T07:54:09.000Z">
-<meta property="article:modified_time" content="2021-04-19T09:16:38.963Z">
+<meta property="article:modified_time" content="2021-04-19T09:24:32.094Z">
 <meta property="article:author" content="Elaina·Celesteria">
 <meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
@@ -208,18 +208,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -313,7 +313,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-04-19 15:54:09 / 修改时间：17:16:38" itemprop="dateCreated datePublished" datetime="2021-04-19T15:54:09+08:00">2021-04-19</time>
+      <time title="创建时间：2021-04-19 15:54:09 / 修改时间：17:24:32" itemprop="dateCreated datePublished" datetime="2021-04-19T15:54:09+08:00">2021-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,7 +350,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">  	<span class="comment">// 排序算法。。</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="comment">// 比较函数</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v, Comparable w)</span> </span>&#123;</span><br><span class="line">      	<span class="keyword">return</span> v.comparaTo(w) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="comment">// 单行打印函数</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; ++i) &#123;</span><br><span class="line">          System.out.print(a[i] + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      	System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="comment">// 判断是否有序函数</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSorted</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">      	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.length; ++i) &#123;</span><br><span class="line">          	<span class="keyword">if</span> (less(a[i], a[i - <span class="number">1</span>]))</span><br><span class="line">              	<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="0-2-数据类型"><a href="#0-2-数据类型" class="headerlink" title="0.2    数据类型"></a>0.2    数据类型</h3><p>​        我们的排序模板适用任何实现了<code>Comparable接口</code>的数据类型。</p>
-<p>​        当我们创建自己的数据类型时，只要实现<code>Comparable接口</code>就可以保证用例代码可以将其排序。见<a href>java中的比较</a></p>
+<p>​        当我们创建自己的数据类型时，只要实现<code>Comparable接口</code>就可以保证用例代码可以将其排序。见<a target="_blank" rel="noopener" href="http://elaina.vip/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/">java中的比较</a></p>
 <h2 id="一-选择排序"><a href="#一-选择排序" class="headerlink" title="一    选择排序"></a>一    选择排序</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1    概念"></a>1.1    概念</h3><p>​        首先找到数组中最小的元素，其次，将它和数组的第一个元素交换位置（如果第一个元素就是最小的元素）。再次，在剩下的元素中找到最小的元素，将它与数组中第二个的元素交换位置。如此往复，直到将整个数组排序。<br>​        这种方法叫做<strong>选择排序</strong>，因为它在不断地选择<strong>剩余元素中最小</strong>的。</p>
 <p>​        选择排序的内循环只是在寻找剩余元素中<strong>最小的元素</strong>，而交换的代码则写在，内循环外边，每次交换都能排定一个元素。<code>N</code>个元素，因此交换的总次数为<code>N</code>。所以算法的<strong>时间效率</strong>取决于<strong>比较的次数</strong>。</p>
 <h3 id="1-2-结论"><a href="#1-2-结论" class="headerlink" title="1.2    结论"></a>1.2    结论</h3><p>​        命题A：<strong>对于长度为<code>N</code>的数组，选择排序需要大约<code>N^2/2</code>次比较和<code>N</code>交换</strong></p>
@@ -431,8 +431,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/" rel="next" title="java中的比较">
-                  java中的比较 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/" rel="next" title="java基础-Comparable和Comparator">
+                  java基础-Comparable和Comparator <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

@@ -27,20 +27,26 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"ai-elaina.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.3.0","exturl":false,"sidebar":{"position":"left","width":280,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="1    什么是KMP算法​        KMP是一种字符串查找算法，由Knuth，Morris和Pratt发明的。 2    KMP的作用​        KMP主要应用在字符串匹配上，主要思想是当出现字符串不匹配时，可以知道一部分之前已经匹配的文本内容，可以利用这些信息必从头头再去匹配。 3    了解KMP中的中各个指针，数组的意义​        写过KMP，一定要了解什么是前缀，后缀，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://ai-elaina.github.io/2021/04/06/hello-world/index.html">
+<meta property="og:title" content="KMP算法详解">
+<meta property="og:url" content="https://ai-elaina.github.io/2021/04/20/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="伊蕾娜天下第一">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1    什么是KMP算法​        KMP是一种字符串查找算法，由Knuth，Morris和Pratt发明的。 2    KMP的作用​        KMP主要应用在字符串匹配上，主要思想是当出现字符串不匹配时，可以知道一部分之前已经匹配的文本内容，可以利用这些信息必从头头再去匹配。 3    了解KMP中的中各个指针，数组的意义​        写过KMP，一定要了解什么是前缀，后缀，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-06T02:34:57.133Z">
-<meta property="article:modified_time" content="2021-04-06T02:34:57.133Z">
+<meta property="og:image" content="https://ai-elaina.github.io/images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205208.png">
+<meta property="og:image" content="https://ai-elaina.github.io/images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205700.png">
+<meta property="og:image" content="https://ai-elaina.github.io/images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420210123.png">
+<meta property="og:image" content="https://ai-elaina.github.io/images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420212811.png">
+<meta property="article:published_time" content="2021-04-20T10:23:18.000Z">
+<meta property="article:modified_time" content="2021-04-20T13:50:10.030Z">
 <meta property="article:author" content="Elaina·Celesteria">
+<meta property="article:tag" content="KMP算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ai-elaina.github.io/images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205208.png">
 
 
-<link rel="canonical" href="https://ai-elaina.github.io/2021/04/06/hello-world/">
+<link rel="canonical" href="https://ai-elaina.github.io/2021/04/20/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">
 
 
 <script class="page-configurations">
@@ -52,7 +58,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>Hello World | 伊蕾娜天下第一</title>
+<title>KMP算法详解 | 伊蕾娜天下第一</title>
   
 
 
@@ -191,7 +197,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFKMP%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">1    什么是KMP算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-KMP%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2    KMP的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BA%86%E8%A7%A3KMP%E4%B8%AD%E7%9A%84%E4%B8%AD%E5%90%84%E4%B8%AA%E6%8C%87%E9%92%88%EF%BC%8C%E6%95%B0%E7%BB%84%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">3.</span> <span class="nav-text">3    了解KMP中的中各个指针，数组的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%A3%E7%A0%81%E6%9E%84%E9%80%A0next%E6%95%B0%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">4    代码构造next数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BB%83%E4%B9%A0"><span class="nav-number">5.</span> <span class="nav-text">5    练习</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -287,7 +293,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ai-elaina.github.io/2021/04/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://ai-elaina.github.io/2021/04/20/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/dataImage/avatar.jpg">
@@ -300,7 +306,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          KMP算法详解
         </h1>
 
         <div class="post-meta-container">
@@ -310,8 +316,22 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-04-06 10:34:57" itemprop="dateCreated datePublished" datetime="2021-04-06T10:34:57+08:00">2021-04-06</time>
+      <time title="创建时间：2021-04-20 18:23:18 / 修改时间：21:50:10" itemprop="dateCreated datePublished" datetime="2021-04-20T18:23:18+08:00">2021-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/KMP%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">KMP算法</span></a>
+        </span>
     </span>
 
   
@@ -331,19 +351,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h3 id="1-什么是KMP算法"><a href="#1-什么是KMP算法" class="headerlink" title="1    什么是KMP算法"></a>1    什么是KMP算法</h3><p>​        KMP是一种字符串查找算法，由Knuth，Morris和Pratt发明的。</p>
+<h3 id="2-KMP的作用"><a href="#2-KMP的作用" class="headerlink" title="2    KMP的作用"></a>2    KMP的作用</h3><p>​        KMP主要应用在字符串匹配上，主要思想是当出现字符串不匹配时，可以知道一部分之前已经匹配的文本内容，可以利用这些信息必从头头再去匹配。</p>
+<h3 id="3-了解KMP中的中各个指针，数组的意义"><a href="#3-了解KMP中的中各个指针，数组的意义" class="headerlink" title="3    了解KMP中的中各个指针，数组的意义"></a>3    了解KMP中的中各个指针，数组的意义</h3><p>​        写过KMP，一定要了解什么是<strong>前缀</strong>，<strong>后缀</strong>，<strong>最长相等前后缀</strong>，**<code>next</code>数组<strong>，以及KMP中指针</strong><code>i</code><strong>，与</strong><code>j</code>**代表的意思，这样才可以更好地学习KMP</p>
+<p>​        <strong>文本串：</strong>你输入的字符串。</p>
+<p>​        <strong>模式串：</strong>要从文本串中匹配的字符串。</p>
+<p>​        <strong>前缀：</strong>当前所指向的字符的前面所有子字符串，不包括当前所指向的字符。</p>
+<p>​        <strong>后缀：</strong>不含有首字符，但含有当前所指向的字符，所有子串。:chestnut:<strong>:</strong></p>
+<html>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<table style="margin: auto">
+    <tr>
+        <td>
+            字符串：aabaaf<br>
+            子串：a 没有前缀<br>
+            子串：aa 的前缀有`a`<br>
+            子串：aab 的前缀有`a、aa`<br>
+            子串：aaba 的前缀有`a、aa、aab`<br>
+            子串：aabaa 的前缀有`a、aa、aab、aaba`<br>
+            子串：aabaaf 的前缀有`a、aa、aab、aaba、aabaa`<br>    
+        </td>
+        <td>
+            字符串：aabaaf<br>
+            子串：a 没有后缀<br>
+            子串：aa 的后缀有`a`<br>
+            子串：aab 的后缀有`b、ab`<br>
+            子串：aaba 的后缀有`a、ba、aba`<br>
+            子串：aabaa 的后缀有`a、aa、baa、abaa`<br>
+            子串：aabaaf 的后缀有`f、af、aaf、baaf、abaaf`<br>
+        </td>
+    </tr>
+</table>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+</html>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>​        <strong>最长相等前后缀：</strong>前缀与后缀相等时最长的子串。</p>
+<p>​        <strong><code>next</code>数组：</strong><code>next</code>数组就是一个前缀表（prefix table）。<code>next[j]</code>表示用来存放，字符串的索引从<code>0</code>到<code>j</code>的子串中<strong>最长相等前后缀</strong>的长度。用上面的字符串：<code>aabaaf</code>那么<code>next[6] = &#123;0, 1, 0, 1, 2, 0&#125;</code></p>
+<p>​        那么前缀表有什么作用呢？<br>​        <strong>前缀表是用来回退的，它记录了模式串与文本串不匹配的时候，模式串应该从哪里开始重新匹配</strong>    举个:chestnut:</p>
+<p>​                文本串：<code>aabaabaafa</code>    模式串：<code>aabaaf</code></p>
+<p>​                两个指针同时进行匹配直到遇到冲突：<br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205208.png" style="zoom:60%;"><br>​                箭头所指遇到了冲突，方框都是已匹配的。遇到冲突后指针会回退到<code>b</code><br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420205700.png" style="zoom:60%;"><br>继续进行匹配<br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420210123.png" style="zoom:60%;"><br>这时匹配完成了。</p>
+<p><strong>那么他为什么会回退到<code>b</code>呢？</strong>这时就用到了<code>next</code>数组了。<br><img data-src="/../images/KMP%E7%AE%97%E6%B3%95/QQ%E6%88%AA%E5%9B%BE20210420212811.png" style="zoom:60%;"><br><code>next</code><strong>数组不仅记录的是最长前后缀他还记录了遇到冲突后要返回的位置，遇到冲突后next[j-1]的值即为要返回的位置，这是因为next[j-1]的值就是最长前缀的下一个的索引。（j回到b，b之前是与i之前匹配的）</strong>    当j指向f时不匹配，<code>next[j-1] = 2, s[2] = b</code></p>
+<h3 id="4-代码构造next数组"><a href="#4-代码构造next数组" class="headerlink" title="4    代码构造next数组"></a>4    代码构造next数组</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getNext(String s) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.size();</span><br><span class="line">    <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">0</span>;  <span class="comment">//首字符最长前后缀为0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>, i = <span class="number">1</span>; i &lt; n; i++) &#123; <span class="comment">//j指向前缀尾，也是当前前缀的长度，i指向后缀尾</span></span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; s.charAt(j) != s.charAt(i)) &#123;<span class="comment">//当j指向0时就可以跳出循环，</span></span><br><span class="line">            <span class="comment">//当前缀尾和后缀尾不匹配时，回退到最长前缀的下一个的索引</span></span><br><span class="line">            j = next[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(j) == s.charAt(i))</span><br><span class="line">            <span class="comment">//匹配时前缀尾指针向后移。</span></span><br><span class="line">            j++;</span><br><span class="line">        <span class="comment">//next[i]的值记为j(前缀的长度)，</span></span><br><span class="line">        next[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="5-练习"><a href="#5-练习" class="headerlink" title="5    练习"></a>5    练习</h3><p>​            <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-strstr/">实现strStr()</a></p>
+<p>​        </p>
 
     </div>
 
@@ -377,7 +428,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://ai-elaina.github.io/2021/04/06/hello-world/" title="Hello World">https://ai-elaina.github.io/2021/04/06/hello-world/</a>
+      <a href="https://ai-elaina.github.io/2021/04/20/KMP%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" title="KMP算法详解">https://ai-elaina.github.io/2021/04/20/KMP算法详解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -402,19 +453,19 @@
   </div>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/KMP%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> KMP算法</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/04/03/day01-ssm%E6%95%B4%E5%90%88/" rel="prev" title="day01-ssm整合">
-                  <i class="fa fa-chevron-left"></i> day01-ssm整合
+                <a href="/2021/04/19/java%E5%AD%A6%E4%B9%A0/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/java%E4%B8%AD%E7%9A%84%E6%AF%94%E8%BE%83/" rel="prev" title="java基础-Comparable和Comparator">
+                  <i class="fa fa-chevron-left"></i> java基础-Comparable和Comparator
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/04/16/LeetCode/hashMap/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" rel="next" title="两数之和">
-                  两数之和 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -534,7 +585,7 @@ NexT.utils.loadComments('.gitalk-container', () => {
       repo        : 'MyBlogCommentSystem',
       owner       : 'Ai-Elaina',
       admin       : ['Ai-Elaina'],
-      id          : '6aa48923aeb91e5b0780cf13693c5d0b',
+      id          : '7f19696e90c9ba644bd1b9e2dbf5aed5',
       proxy       : 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
         language: '',
       distractionFreeMode: true
