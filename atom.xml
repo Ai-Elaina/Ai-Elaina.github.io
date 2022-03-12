@@ -3,11 +3,11 @@
   <title>Hexo</title>
   
   <subtitle>	Sword Art Online</subtitle>
-  <link href="https://ai-elaina.github.io/blog/atom.xml" rel="self"/>
+  <link href="https://ai-elaina.github.io/atom.xml" rel="self"/>
   
-  <link href="https://ai-elaina.github.io/blog/"/>
+  <link href="https://ai-elaina.github.io/"/>
   <updated>2022-03-11T02:19:18.760Z</updated>
-  <id>https://ai-elaina.github.io/blog/</id>
+  <id>https://ai-elaina.github.io/</id>
   
   <author>
     <name>Eustia Astraea</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>test</title>
-    <link href="https://ai-elaina.github.io/blog/2022/03/11/test/"/>
-    <id>https://ai-elaina.github.io/blog/2022/03/11/test/</id>
+    <link href="https://ai-elaina.github.io/2022/03/11/test/"/>
+    <id>https://ai-elaina.github.io/2022/03/11/test/</id>
     <published>2022-03-11T02:03:30.000Z</published>
     <updated>2022-03-11T02:19:18.760Z</updated>
     
@@ -35,15 +35,15 @@
     
     
     
-    <category term="Acg" scheme="https://ai-elaina.github.io/blog/categories/Acg/"/>
+    <category term="Acg" scheme="https://ai-elaina.github.io/categories/Acg/"/>
     
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://ai-elaina.github.io/blog/2022/03/10/hello-world/"/>
-    <id>https://ai-elaina.github.io/blog/2022/03/10/hello-world/</id>
+    <link href="https://ai-elaina.github.io/2022/03/10/hello-world/"/>
+    <id>https://ai-elaina.github.io/2022/03/10/hello-world/</id>
     <published>2022-03-10T09:07:07.359Z</published>
     <updated>2022-03-11T01:34:28.439Z</updated>
     
@@ -57,7 +57,7 @@
     
     
     
-    <category term="Acg" scheme="https://ai-elaina.github.io/blog/categories/Acg/"/>
+    <category term="Acg" scheme="https://ai-elaina.github.io/categories/Acg/"/>
     
     
   </entry>
